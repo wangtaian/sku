@@ -63,11 +63,11 @@ public class SkuView extends LinearLayout {
 
     private void init(Context context, @Nullable AttributeSet attrs) {
         this.context = context;
-        LayoutInflater.from(context).inflate(layoutId(), this, true);
+        LayoutInflater.from(context).inflate(R.layout.layout_container, this, true);
         setOrientation(VERTICAL);
     }
-    protected int layoutId() {
-        return R.layout.layout_container;
+    protected int getTagViewLayoutId() {
+        return R.layout.layout_tag;
     }
 
     public void setSkus(@NonNull List<Sku> skus) {
@@ -101,7 +101,7 @@ public class SkuView extends LinearLayout {
             flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
             recyclerView.setLayoutManager(flexboxLayoutManager);
             tvTagType.setText(type.getType());
-            TagAdapter adapter = new TagAdapter(R.layout.layout_tag, tagsList);
+            TagAdapter adapter = new TagAdapter(getTagViewLayoutId(), tagsList);
             adapter.setTagClick(item -> {
                 item.toggle();
                 if (item.isCheck()) {
