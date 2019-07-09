@@ -2,10 +2,8 @@ package ink.itwo.sku.entity;
 
 import java.util.Set;
 
-import ink.itwo.common.util.CollectionUtil;
-
 /**
- Created by wangtaian on 2019/4/4. */
+ @author wang on 2019-07-09  10:37 */
 public class Sku {
     protected Object skuId;
     protected double price;
@@ -57,7 +55,7 @@ public class Sku {
         if (sku.getSkuId() != null && sku.getSkuId().equals(skuId)) {
             return true;
         }
-        if (!CollectionUtil.isEmpty(sku.getTags()) && !CollectionUtil.isEmpty(tags)) {
+        if (sku.getTags() != null && !sku.getTags().isEmpty()) {
             if (sku.getTags().size() != tags.size()) {
                 return false;
             }

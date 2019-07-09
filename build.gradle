@@ -23,7 +23,7 @@ android {
         minSdkVersion project.MIN_SDK_VERSION as int
         targetSdkVersion project.TARGET_SDK_VERSION as int
         versionCode 1
-        versionName "1.0.0.0.1"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,6 +41,9 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
+    compileOnly 'com.android.support:recyclerview-v7:27.1.1'
+    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    implementation  'com.google.android:flexbox:1.0.0'
+//    implementation project(':common')
 //    implementation 'ink.itwo:common:0.1.2.06'
 }

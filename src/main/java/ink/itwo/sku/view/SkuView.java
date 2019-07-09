@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ink.itwo.common.util.CollectionUtil;
 import ink.itwo.sku.R;
 import ink.itwo.sku.entity.Sku;
 import ink.itwo.sku.entity.TagType;
@@ -35,7 +34,6 @@ import ink.itwo.sku.listener.OnSkuViewListener;
 public class SkuView extends LinearLayout {
     private Context context;
     private List<Sku> skus = new ArrayList<>();
-    //    private Set<Tags> checkTags = new HashSet<>();
     private Map<TagType, Tags> checkTags = new HashMap<>();
     private Map<TagType, List<Tags>> typeMap = new HashMap<>();
     private Map<TagType, TagAdapter> adapterMap = new HashMap<>();
@@ -66,10 +64,13 @@ public class SkuView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.layout_container, this, true);
         setOrientation(VERTICAL);
     }
+
+    /** 单个 sku 的布局，可复写该方法来自定义sku 的样式 */
     protected int getTagViewLayoutId() {
         return R.layout.layout_tag;
     }
 
+    /** 设置 sku 的数据源*/
     public void setSkus(@NonNull List<Sku> skus) {
         this.skus.clear();
         this.skus.addAll(skus);
@@ -85,7 +86,7 @@ public class SkuView extends LinearLayout {
         typeMap.clear();
         adapterMap.clear();
         typeMap.putAll(formatData());
-        if (CollectionUtil.isEmpty(typeMap)) {
+        if (typeMap == null || typeMap.isEmpty()) {
             return;
         }
         List<TagType> list = new ArrayList<>(typeMap.keySet());
@@ -124,7 +125,8 @@ public class SkuView extends LinearLayout {
                 }
             });
             adapterMap.put(type, adapter);
-            adapter.bindToRecyclerView(recyclerView);
+            recyclerView.setAdapter(adapter);
+//            adapter.bindToRecyclerView(recyclerView);
             addView(view);
         }
     }
@@ -162,7 +164,7 @@ public class SkuView extends LinearLayout {
         Map<TagType, List<Tags>> map = new HashMap<>();
         for (Sku sku : skus) {
             Set<Tags> tags = sku.getTags();
-            if (CollectionUtil.isEmpty(tags)) {
+            if (tags == null || tags.isEmpty()) {
                 continue;
             }
             for (Tags tag : tags) {
