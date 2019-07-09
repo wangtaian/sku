@@ -1,11 +1,16 @@
+## 一、版本
+![](https://img.shields.io/github/manifest-json/v/wangtaian/sku.svg)
 
-## 一、引用的依赖  
+```
+implementation 'ink.itwo:sku:1.0.0'
+```
+## 二、项目引用的依赖包  
 ```
 compileOnly 'com.android.support:recyclerview-v7:27.1.1'
 compileOnly 'com.android.support:appcompat-v7:27.1.1'
 implementation  'com.google.android:flexbox:1.0.0'
 ```
-## 二、使用方式  
+## 三、使用方式  
 #### 1、布局  
 ```xml
 <ink.itwo.sku.view.SkuView
@@ -167,7 +172,7 @@ public interface OnSkuViewListener {
     void onTagsClick(Tags tags, Map<TagType, Tags> checkTags, Sku sku);
 }
 ```
-## 三、混淆
+## 四、混淆
 ```
 -keep class ink.itwo.sku.** { *; }
 ```
